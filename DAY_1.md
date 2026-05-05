@@ -30,7 +30,7 @@ Angular es un **framework robusto de frontend** mantenido por Google, ideal para
 - **Programación Orientada a Objetos**: Uso de clases y herencia
 - **TypeScript**: No JavaScript puro, sino tipado estático
   
-![Sintaxis basica](./docs/images/sintaxis-basica.png)
+![Sintaxis basica](./docs/images/sintaxis-basica.png)  
 *Figura 1: Arquitectura general de Angular*  
 *Fuente: [ed.team](https://ed.team/blog/que-es-angular)*
 
@@ -318,6 +318,37 @@ Angular ejecuta métodos en este orden:
 ## 📄 Entregables del Dia
 ### 🐛 BUGS
 1. **Un producto no se muestra porque el nombre de la propiedad está mal escrito:**
+Generé el BUG copiando mal el nombre de la propiedad `product.name` por `product.nombre`
+en el template HTML `product-list.html` asi:
+
+```html
+<div class="product-card">
+  <h3>{{ product.nombre }}</h3>
+  <p><strong>Precio: </strong> {{ product.price | number}} </p>
+  <p><strong>Stock: </strong> {{ product.stock }} </p>
+</div>
+```
+lo que ocaciona que no me renderice en pantalla mostrandome el siguiente error:
+<span style="color:#ff5555">TS2339: Property 'nombre' does not exist on type 'Product'.</span>
+
+![Error TS2339](./docs/images/1_error_TS2339.png)  
+*Figura 3: Error generado por un mal tipado en una propiedad del template HTML.*
+
+### Solución
+Se identifica el tipo de error que muestra a la hora de compilar la aplicación, donde claramente evidencia
+que la propiedad `nombre` no existe en la interfaz `Product`, ya que el campo declarado alli se llama
+`name` produciendo la desincronización entre ambos archivos, por consiguiente me dezplazo a la ruta del 
+archivo tamplate que me señala el error: <span style="color:#2dd9da"><u>src/app/product-list/product-list.html:10:25</u></span> 
+y corrijo la propiedad por el nombre correcto a `name`, asi:
+
+```html
+<div class="product-card">
+  <h3>{{ product.name }}</h3>
+  <p><strong>Precio: </strong> {{ product.price | number}} </p>
+  <p><strong>Stock: </strong> {{ product.stock }} </p>
+</div>
+```
+
 
 
 

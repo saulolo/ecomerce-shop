@@ -379,17 +379,41 @@ Evidenciando que la interfaz grafica en el campo **Price** su valor se imprime c
 ![Campo Price](./docs/images/4_image_price.png)  
 *Figura 6: Evidencia formato correcto de moneda.*
 
+3. **Un producto con stock 0 aparece como disponible:**
+Para generar el BUG, en la directiva `@if`, donde se realiza la validación
+`products().length === 0`, establecí que no habia *stock*, mostrando por consiguiente el mensaje de **Disponible**.
+```html
+@if (products().length === 0) {
+<p class="no-products">Disponible</p>
+}
+```
+### Solución
+Para corregir el BUG, lo que realice es verificar donde estaba mostrando en el Template HTML
+`product-list.html` el mensaje *Disponible* y corregi la lógica de la validación para que tuviera el
+comportamiento esperado y es que si el objeto que se llame en su stock no tiene productos (cero productos)
+entondes me muestre un mensaje de *No hay productos disponibles*, asi:
+```html
+@if (products().length === 0) {
+<p class="no-products">No hay productos disponibles</p>
+}
+```
+
+
+💻 CAPTURA APLICACIÓN FUNCIONAL
+![App](./docs/images/app_functional.gif)  
+*Figura 7: Evidencia Aplicación funcional.*
+
 ---
 ### METADATOS DEL DOCUMENTO 📄
 
-| Campo                    | Detalles                                                          |
-|:-------------------------|:------------------------------------------------------------------|
-| **Título**               | DAY 1 - FUNDAMENTOS DE ANGULAR 20                                 |
-| **Autor(es)**            | Saul Echeverri                                                    |
-| **Versión**              | 1.0.0                                                             |
-| **Fecha de Creación**    | 04 de Mayo de 2026                                                |
-| **Última Actualización** | 05 de Mayo de 2026                                                |
-| **Notas Adicionales**    | Documento base de referncia para el plan de formación en Angular. |
+| Campo                    | Detalles                                                           |
+|:-------------------------|:-------------------------------------------------------------------|
+| **Título**               | DAY 1 - FUNDAMENTOS DE ANGULAR 20                                  |
+| **Autor(es)**            | Saul Echeverri                                                     |
+| **Versión**              | 1.0.0                                                              |
+| **Fecha de Creación**    | 04 de Mayo de 2026                                                 |
+| **Última Actualización** | 05 de Mayo de 2026                                                 |
+| **Notas Adicionales**    | Documento base de referencia para el plan de formación en Angular. |
 
 ---
 

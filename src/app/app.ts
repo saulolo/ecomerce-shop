@@ -10,6 +10,6 @@ import {PRODUCTS} from './models/product-data';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('Ecomerce Shop');
+  protected readonly title = signal('Ecommerce Shop');
   protected readonly products = PRODUCTS;
 }

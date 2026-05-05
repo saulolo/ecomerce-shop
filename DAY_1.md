@@ -320,7 +320,6 @@ Angular ejecuta métodos en este orden:
 1. **Un producto no se muestra porque el nombre de la propiedad está mal escrito:**
 Generé el BUG copiando mal el nombre de la propiedad `product.name` por `product.nombre`
 en el template HTML `product-list.html` asi:
-
 ```html
 <div class="product-card">
   <h3>{{ product.nombre }}</h3>
@@ -340,7 +339,6 @@ que la propiedad `nombre` no existe en la interfaz `Product`, ya que el campo de
 `name` produciendo la desincronización entre ambos archivos, por consiguiente me dezplazo a la ruta del 
 archivo tamplate que me señala el error: <span style="color:#2dd9da"><u>src/app/product-list/product-list.html:10:25</u></span> 
 y corrijo la propiedad por el nombre correcto a `name`, asi:
-
 ```html
 <div class="product-card">
   <h3>{{ product.name }}</h3>
@@ -349,10 +347,37 @@ y corrijo la propiedad por el nombre correcto a `name`, asi:
 </div>
 ```
 
+2. **Un precio se muestra como texto sin formato:**
+Actualmente uso el pipe `number` de Angular para dar formato a propiedades de números
+o monedas, lo que hice para generar el bug es eliminar dicho pipe de la propiedad `price` 
+del template HTML `product-list.html`, asi:
 
+```html
+<p><strong>Precio: </strong> {{ product.price }} </p>
+```
+Esto ocasiona que al momento de renderizar la aplicación, en el campo **Precio**, me muestre
+el valor numérico sin ningun tipo de formato de comas, separadores o simolo de monedas, 
+tal como se muestra en la imagen:
+![Error Formato numérico](./docs/images/2_error_fomato.png)  
+*Figura 4: Error generado al eliminar el pipe number de la propiedad Price.*
 
+### Solución
+Se identifica por medio de la *consola del desarrollador* que el label **Precio** que se renderiza 
+en la interfaz gráfica, es una propiedad de tipo number del campo `price` del objeto `product` tal 
+como se muestra en la imagen:
+![Identificación en consola del error](./docs/images/3_error_pipe.png)  
+*Figura 5: Identificación en la consola del desarrollador del campo Precio.*
 
+y una vez identificada la propiedad en el template HTML de `product-list.html`, se procede a agregar
+el pipe `number` correspondiente al formateo de monedas para una mejor visualización del valor, asi:
 
+```html
+<p><strong>Precio: </strong> {{ product.price | number }} </p>
+```
+
+Evidenciando que la interfaz grafica en el campo **Price** su valor se imprime con el formato adecuado.
+![Campo Price](./docs/images/4_image_price.png)  
+*Figura 6: Evidencia formato correcto de moneda.*
 
 ---
 ### METADATOS DEL DOCUMENTO 📄

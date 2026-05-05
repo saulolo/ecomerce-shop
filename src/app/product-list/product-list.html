@@ -1,0 +1,19 @@
+<div class="product-list-container">
+  <h2>Catálogo de Productos</h2>
+
+  @if (products().length === 0) {
+    <p class="no-products">No hay productos disponibles</p>
+  } @else {
+    <div class="product-grid">
+      @for (product of products(); track product.id) {
+        <div class="product-card">
+          <h3>{{ product.name }}</h3>
+          <p><strong>Precio: </strong> {{ product.price | number}} </p>
+          <p><strong>Stock: </strong> {{ product.stock }} </p>
+        </div>
+
+      }
+    </div>
+
+  }
+</div>

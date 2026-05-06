@@ -1,3 +1,18 @@
 <h1>{{ title() }}</h1>
 
-<app-product-list [products]="products"/>
+<div class="product-list-container" style="margin-bottom: 24px;">
+  <div class="product-filter-bar">
+    <input
+      type="text"
+      placeholder="Filtrar por nombre"
+      [value]="filter()"
+      (input)="setFilter($any($event.target).value)"
+      style="padding: 8px; font-size: 1rem;"
+    >
+    <button (click)="toggleAvailability()" style="padding: 8px 16px;">
+      {{ onlyAvailable() ? 'Mostrar todos' : 'Mostrar solo disponibles' }}
+    </button>
+  </div>
+</div>
+
+<app-product-list [products]="products()"/>

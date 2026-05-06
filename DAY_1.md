@@ -300,10 +300,10 @@ Angular ejecuta métodos en este orden:
 ## Referencias y Recursos
 
 - 📌 [mcherrera.dev](https://mcherrera.dev/posts/angular-arquitectura/)
-- 📌 [medium.com](https://mcherrera.dev/posts/angular-arquitectura/)
-- 📌 [codingpotions](https://mcherrera.dev/posts/angular-arquitectura/)
-- 📌 [ed.team](https://mcherrera.dev/posts/angular-arquitectura/)
-- 📌 [angular.io](https://mcherrera.dev/posts/angular-arquitectura/)
+- 📌 [medium.com](https://normeno.medium.com/introducci%C3%B3n-a-angular-eaee950163db)
+- 📌 [codingpotions](https://codingpotions.com/introduccion-instalacion-angular/)
+- 📌 [ed.team](https://ed.team/blog/que-es-angular)
+- 📌 [angular.io](https://angular.dev/overview)
 
 ---
 
@@ -356,7 +356,7 @@ del template HTML `product-list.html`, asi:
 <p><strong>Precio: </strong> {{ product.price }} </p>
 ```
 Esto ocasiona que al momento de renderizar la aplicación, en el campo **Precio**, me muestre
-el valor numérico sin ningun tipo de formato de comas, separadores o simolo de monedas, 
+el valor numérico sin ningun tipo de formato de comas, separadores o simbolo de monedas, 
 tal como se muestra en la imagen:
 ![Error Formato numérico](./docs/images/2_error_fomato.png)  
 *Figura 4: Error generado al eliminar el pipe number de la propiedad Price.*
@@ -399,12 +399,12 @@ entondes me muestre un mensaje de *No hay productos disponibles*, asi:
 ```
 
 
-💻 CAPTURA APLICACIÓN FUNCIONAL
+### 💻 CAPTURA APLICACIÓN FUNCIONAL
 ![App](./docs/images/app_functional.gif)  
 *Figura 7: Evidencia Aplicación funcional.*
 
 ---
-### METADATOS DEL DOCUMENTO 📄
+### 📄 METADATOS DEL DOCUMENTO 
 
 | Campo                    | Detalles                                                           |
 |:-------------------------|:-------------------------------------------------------------------|

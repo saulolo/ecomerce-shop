@@ -2,7 +2,7 @@
   <h2>Catálogo de Productos</h2>
 
   @if (products().length === 0) {
-    <p class="no-products">No hay productos disponibles</p>
+    <p class="no-products">No existen resultados para la la busqueda.</p>
   } @else {
     <div class="product-grid">
       @for (product of products(); track product.id) {

@@ -5,7 +5,7 @@ export const PRODUCTS: Product[] = [
     id: "001",
     name: "PC Gamer Alienware",
     price: 9_000_000,
-    stock: 10,
+    stock: 0,
     category: "electronics"
   },
   {

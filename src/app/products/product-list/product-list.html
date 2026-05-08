@@ -6,11 +6,7 @@
   } @else {
     <div class="product-grid">
       @for (product of products(); track product.id) {
-        <div class="product-card">
-          <h3>{{ product.name }}</h3>
-          <p><strong>Precio: </strong> {{ product.price | number }} </p>
-          <p><strong>Stock: </strong> {{ product.stock }} </p>
-        </div>
+        <app-product-card [product]="product"></app-product-card>
       }
     </div>
   }

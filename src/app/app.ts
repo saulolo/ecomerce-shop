@@ -1,35 +1,35 @@
 import {Component, computed, signal} from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import {RouterOutlet} from '@angular/router';
-import {ProductList} from './product-list/product-list';
-import {PRODUCTS} from './models/product-data';
+import {ProductList} from './products/product-list/product-list';
+import {PRODUCTS} from './products/models/product-data';
+import {ProductFilter} from './products/product-filter/product-filter';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ProductList],
+  imports: [RouterOutlet, ProductList, FormsModule, ProductFilter],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
 export class App {
   protected readonly title = signal('Ecommerce Shop');
-  protected readonly filter = signal('');
-  protected readonly onlyAvailable = signal(false);
+  protected filter = signal('');
+  protected onlyAvailable = signal(false);
   protected readonly allProducts = PRODUCTS;
 
-  // Filtra por texto y estado de disponibilidad
+  // Computed para productos filtrados
   protected readonly products = computed(() =>
-    this.allProducts.filter(p =>
-      p.name.toLowerCase().includes(this.filter().toLowerCase())
-      &&
-      (!this.onlyAvailable() || p.stock > 0)
-    )
+    this.allProducts
+      .filter(p =>
+        p.name.toLowerCase().includes(this.filter().toLowerCase()) &&
+        (!this.onlyAvailable() || p.stock > 0)
+      )
   );
 
-  // Métodos mutadores
-  setFilter(value: string) {
-    this.filter.set(value);
+  setFilter(val: string) {
+    this.filter.set(val);
   }
-
-  toggleAvailability() {
-    this.onlyAvailable.set(!this.onlyAvailable());
+  setOnlyAvailable(val: boolean) {
+    this.onlyAvailable.set(val);
   }
 }

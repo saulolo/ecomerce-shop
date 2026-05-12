@@ -11,7 +11,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
   styleUrl: './product-filter.css',
 })
 export class ProductFilter {
-  // Recibe señales desde el padre
+  // Recibe signal del padre (no define su propio signal)
   value = input<string>();
   onlyAvailable = input<boolean>();
 

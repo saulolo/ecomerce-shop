@@ -12,12 +12,13 @@ import {ProductFilter} from './products/product-filter/product-filter';
   styleUrl: './app.css'
 })
 export class App {
+  //En estos campos de clase ya estoy usando signals
   protected readonly title = signal('Ecommerce Shop');
   protected filter = signal('');
   protected onlyAvailable = signal(false);
   protected readonly allProducts = PRODUCTS;
 
-  // Computed para productos filtrados
+  // En esta función uso Computed para productos filtrados
   protected readonly products = computed(() =>
     this.allProducts
       .filter(p =>

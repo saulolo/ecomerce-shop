@@ -10,5 +10,5 @@ import {ProductCard} from '../product-card/product-card';
   styleUrl: './product-list.css',
 })
 export class ProductList {
-  products = input.required<Product[]>();
+  products = input.required<Product[]>(); // <- Recibe la lista desde el padre
 }

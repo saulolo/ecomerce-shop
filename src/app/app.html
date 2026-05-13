@@ -1,9 +1,11 @@
-<h1>{{ title() }}</h1>
+<header>
+  <h1>{{ title() }}</h1>
+  <nav>
+    <a routerLink="/products">Productos</a>
+  </nav>
+</header>
 
-<app-product-filter
-  [value]="filter()"
-  [onlyAvailable]="onlyAvailable()"
-  (valueChange)="setFilter($event)"
-  (onlyAvailableChange)="setOnlyAvailable($event)">
-</app-product-filter>
-<app-product-list [products]="products()"></app-product-list>
+<main>
+  <router-outlet></router-outlet>
+</main>
+

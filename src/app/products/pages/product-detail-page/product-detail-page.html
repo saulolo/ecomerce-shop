@@ -1,0 +1,18 @@
+<div class="product-detail-page">
+  @if (product(); as p) {
+    <div class="product-detail-card">
+      <h2>{{ p.name }}</h2>
+      <p><strong>ID:</strong> {{ p.id }}</p>
+      <p><strong>Precio:</strong> ${{ p.price | number:'1.2-2' }}</p>
+      <p><strong>Stock:</strong> {{ p.stock }} unidades</p>
+      <p><strong>Categoría:</strong> {{ p.category }}</p>
+
+      <div class="actions">
+        <button (click)="goBack()">← Volver al listado</button>
+      </div>
+    </div>
+  } @else {
+    <p>Cargando producto...</p>
+  }
+</div>
+

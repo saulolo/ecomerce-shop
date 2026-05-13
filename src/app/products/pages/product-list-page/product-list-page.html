@@ -1,0 +1,9 @@
+<div class="products-page">
+  <app-product-filter
+    [value]="filter()"
+    [onlyAvailable]="onlyAvailable()"
+    (valueChange)="setFilter($event)"
+    (onlyAvailableChange)="setOnlyAvailable($event)">
+  </app-product-filter>
+  <app-product-list [products]="products()"></app-product-list>
+</div>

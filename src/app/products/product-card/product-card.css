@@ -7,11 +7,6 @@
   transition: transform 0.2s;
 }
 
-.product-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-}
-
 .product-card h3 {
   margin: 0 0 12px 0;
   color: #333;
@@ -22,3 +17,20 @@
   color: #666;
   font-size: 14px;
 }
+
+.product-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.product-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.view-detail {
+  color: #007bff;
+  font-size: 0.9rem;
+  margin-top: 8px;
+}
+

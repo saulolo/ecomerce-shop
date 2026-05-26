@@ -1,7 +1,7 @@
-import {Component, computed, signal} from '@angular/core';
-import {PRODUCTS} from '../../models/product-data';
+import {Component, computed, inject, signal} from '@angular/core';
 import {ProductFilter} from '../../product-filter/product-filter';
 import {ProductList} from '../../product-list/product-list';
+import {ProductService} from '../../product-service';
 
 @Component({
   selector: 'app-product-list-page',
@@ -13,17 +13,13 @@ import {ProductList} from '../../product-list/product-list';
   styleUrl: './product-list-page.css',
 })
 export class ProductListPage {
+  private productService = inject(ProductService);
   protected filter = signal('');
   protected onlyAvailable = signal(false);
-  protected readonly allProducts = PRODUCTS;
 
-  // En esta función uso Computed para productos filtrados
+  // Usar el servicio para obtener productos
   protected readonly products = computed(() =>
-    this.allProducts
-      .filter(p =>
-        p.name.toLowerCase().includes(this.filter().toLowerCase()) &&
-        (!this.onlyAvailable() || p.stock > 0)
-      )
+    this.productService.filterProducts(this.filter(), this.onlyAvailable())
   );
 
   setFilter(val: string) {

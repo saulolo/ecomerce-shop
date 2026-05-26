@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {Product} from '../../models/product';
 import {PRODUCTS} from '../../models/product-data';
 import {DecimalPipe} from '@angular/common';
+import {ProductService} from '../../product-service';
 
 @Component({
   selector: 'app-product-detail-page',
@@ -13,6 +14,8 @@ import {DecimalPipe} from '@angular/common';
   styleUrl: './product-detail-page.css',
 })
 export class ProductDetailPage {
+  private productService = inject(ProductService);
+
   // Inyección de dependencias moderna con inject()
   private route = inject(ActivatedRoute);
   private router = inject(Router);
@@ -25,8 +28,13 @@ export class ProductDetailPage {
     //Leer el parametrp 'id' de la url
     const id = this.route.snapshot.paramMap.get('id');
 
+    if (!id) {
+      this.router.navigate(['/not-found']);
+      return;
+    }
+
     //Buscar el producto en la lista
-    const foundProduct = PRODUCTS.find(p => p.id === id)
+    const foundProduct = this.productService.getProductById(id)
 
     if (foundProduct) {
       this.product.set(foundProduct);

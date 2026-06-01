@@ -5,5 +5,17 @@
     (valueChange)="setFilter($event)"
     (onlyAvailableChange)="setOnlyAvailable($event)">
   </app-product-filter>
-  <app-product-list [products]="products()"></app-product-list>
+
+  <div class="debug-actions">
+    <button type="button" (click)="loadProducts('success')">Simular success</button>
+    <button type="button" (click)="loadProducts('empty')">Simular empty</button>
+    <button type="button" (click)="loadProducts('error')">Simular error</button>
+  </div>
+
+  @switch (viewState()) {
+    @case ('loading') { <p>Cargando...</p> }
+    @case ('error') { <p>{{ errorMessage() }}</p> }
+    @case ('empty') { <p>No hay datos.</p> }
+    @case ('success') { <app-product-list [products]="products()"></app-product-list> }
+  }
 </div>

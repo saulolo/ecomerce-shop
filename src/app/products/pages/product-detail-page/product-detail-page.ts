@@ -1,5 +1,5 @@
 import {Component, inject, signal} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, RouterLink} from '@angular/router';
 import {Product} from '../../models/product';
 import {DecimalPipe} from '@angular/common';
 import {ProductService} from '../../product-service';
@@ -7,7 +7,7 @@ import {ProductService} from '../../product-service';
 
 @Component({
   selector: 'app-product-detail-page',
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, RouterLink],
   templateUrl: './product-detail-page.html',
   styleUrl: './product-detail-page.css',
 })

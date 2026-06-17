@@ -49,4 +49,24 @@ export class ProductService {
     return product.stock > 0;
   }
 
+  // Crear producto
+  saveProduct(product: Omit<Product, 'id'>): Observable<Product> {
+    const newProduct: Product = {
+      ...product,
+      id: Math.random().toString(36).slice(2, 8),
+    };
+    PRODUCTS.push(newProduct);
+    return of(newProduct).pipe(delay(800));
+  }
+
+  // Editar producto
+  updateProduct(id: string, changes: Partial<Product>): Observable<Product | undefined> {
+    const index = PRODUCTS.findIndex((p) => p.id === id);
+    if (index !== -1) {
+      PRODUCTS[index] = { ...PRODUCTS[index], ...changes };
+      return of(PRODUCTS[index]).pipe(delay(800));
+    }
+    return of(undefined).pipe(delay(800));
+  }
+
 }

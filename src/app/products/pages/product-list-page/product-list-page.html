@@ -1,4 +1,11 @@
 <div class="products-page">
+
+  <!-- NUEVO: botón para crear producto -->
+  <div class="page-header">
+    <h1>Productos</h1>
+    <a routerLink="/products/new" class="btn-new">+ Nuevo producto</a>
+  </div>
+
   <app-product-filter
     [value]="filter()"
     [onlyAvailable]="onlyAvailable()"

@@ -3,6 +3,7 @@ import {ProductFilter} from '../../product-filter/product-filter';
 import {ProductList} from '../../product-list/product-list';
 import {ProductRequestState, ProductService} from '../../product-service';
 import {Product} from '../../models/product';
+import {RouterLink} from '@angular/router';
 
 type ViewState = 'loading' | 'error' | 'empty' | 'success';
 
@@ -10,7 +11,8 @@ type ViewState = 'loading' | 'error' | 'empty' | 'success';
   selector: 'app-product-list-page',
   imports: [
     ProductFilter,
-    ProductList
+    ProductList,
+    RouterLink
   ],
   templateUrl: './product-list-page.html',
   styleUrl: './product-list-page.css',

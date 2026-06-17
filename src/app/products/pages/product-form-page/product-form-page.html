@@ -1,0 +1,101 @@
+<div class="form-page">
+  <h2>{{ isEditMode() ? 'Editar producto' : 'Nuevo producto' }}</h2>
+
+  <form [formGroup]="productForm" (ngSubmit)="onSubmit()" novalidate>
+
+    <!-- NOMBRE -->
+    <div class="form-field">
+      <label for="name">Nombre</label>
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        placeholder="Ej: Monitor Samsung"
+        [class.input-error]="nameControl.invalid && nameControl.touched"
+      />
+      @if (nameControl.invalid && nameControl.touched) {
+        @if (nameControl.hasError('required')) {
+          <p class="error">El nombre es obligatorio.</p>
+        }
+      }
+    </div>
+
+    <!-- PRECIO -->
+    <div class="form-field">
+      <label for="price">Precio</label>
+      <input
+        id="price"
+        type="number"
+        formControlName="price"
+        placeholder="Ej: 1500000"
+        [class.input-error]="priceControl.invalid && priceControl.touched"
+      />
+      @if (priceControl.invalid && priceControl.touched) {
+        @if (priceControl.hasError('required')) {
+          <p class="error">El precio es obligatorio.</p>
+        }
+        @if (priceControl.hasError('min')) {
+          <p class="error">El precio debe ser mayor a 0.</p>
+        }
+      }
+    </div>
+
+    <!-- STOCK -->
+    <div class="form-field">
+      <label for="stock">Stock</label>
+      <input
+        id="stock"
+        type="number"
+        formControlName="stock"
+        placeholder="Ej: 10"
+        [class.input-error]="stockControl.invalid && stockControl.touched"
+      />
+      @if (stockControl.invalid && stockControl.touched) {
+        @if (stockControl.hasError('required')) {
+          <p class="error">El stock es obligatorio.</p>
+        }
+        @if (stockControl.hasError('min')) {
+          <p class="error">El stock no puede ser negativo.</p>
+        }
+      }
+    </div>
+
+    <!-- CATEGORÍA -->
+    <div class="form-field">
+      <label for="category">Categoría</label>
+      <select
+        id="category"
+        formControlName="category"
+        [class.input-error]="categoryControl.invalid && categoryControl.touched"
+      >
+        <option value="">-- Selecciona una categoría --</option>
+        @for (cat of categories; track cat) {
+          <option [value]="cat">{{ cat }}</option>
+        }
+      </select>
+      @if (categoryControl.invalid && categoryControl.touched) {
+        @if (categoryControl.hasError('required')) {
+          <p class="error">La categoría es obligatoria.</p>
+        }
+      }
+    </div>
+
+    <!-- ESTADO ACTIVO -->
+    <div class="form-field form-field--checkbox">
+      <label>
+        <input type="checkbox" formControlName="active" />
+        Producto activo
+      </label>
+    </div>
+
+    <!-- BOTONES -->
+    <div class="form-actions">
+      <a routerLink="/products" class="btn btn-secondary">Cancelar</a>
+      <button type="submit" class="btn btn-primary" [disabled]="isSaving()">
+        {{ isSaving() ? 'Guardando...' : (isEditMode() ? 'Guardar cambios' : 'Crear producto') }}
+      </button>
+    </div>
+
+  </form>
+</div>
+

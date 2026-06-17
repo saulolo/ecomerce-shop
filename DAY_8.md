@@ -21,12 +21,19 @@
 ## Teoría
 
 ### 1. Formularios reactivos
-Los **formularios reactivos** (Reactive Forms) son una forma de construir y gestionar formularios en Angular basada en un modelo reactivo y programático. A diferencia de los formularios por plantilla (Template-Driven Forms), los formularios reactivos se definen completamente en el código TypeScript del componente, lo que ofrece mayor control, escalabilidad y capacidad de testing.
+Los **formularios reactivos** (Reactive Forms) son una forma de construir y gestionar 
+formularios en Angular basada en un modelo reactivo y programático. A diferencia de 
+los formularios por plantilla (Template-Driven Forms), los formularios reactivos se 
+definen completamente en el código TypeScript del componente, lo que ofrece mayor control, 
+escalabilidad y capacidad de testing.
 
-En los formularios reactivos, la lógica de validación, el estado del formulario y los valores están centralizados en el componente, facilitando la creación de formularios complejos con validaciones dinámicas.
+En los formularios reactivos, la lógica de validación, el estado del formulario y los valores 
+están centralizados en el componente, facilitando la creación de formularios complejos con 
+validaciones dinámicas.
 
-![Formularios Reactivos](./docs/images/15_reactive-forms.png)  
-*Figura 1: Los formularios reactivos en Angular permiten construir formularios dinámicos con validaciones y estado gestionados desde el código TypeScript.  
+![Formularios Reactivos](./docs/images/15_formularios_reactivos.png)  
+*Figura 1: Los formularios reactivos en Angular permiten construir formularios dinámicos con 
+validaciones y estado gestionados desde el código TypeScript.  
 Fuente: [angular.dev](https://angular.dev/guide/forms/reactive-forms)*
 
 **Ejemplo básico:**
@@ -42,9 +49,12 @@ this.miFormulario = new FormGroup({
 ---
 
 ### 2. FormGroup
-Un **FormGroup** es una colección de controles de formulario agrupados bajo un mismo objeto. Representa un formulario completo o una sección de él, y permite gestionar el estado y los valores de múltiples campos de forma conjunta.
+Un **FormGroup** es una colección de controles de formulario agrupados bajo un mismo objeto. 
+Representa un formulario completo o una sección de él, y permite gestionar el estado y los valores 
+de múltiples campos de forma conjunta.
 
-Cada FormGroup rastrea el valor agregado y el estado de validación de todos sus controles hijos, lo que facilita validar y manejar formularios complejos con múltiples campos relacionados.
+Cada FormGroup rastrea el valor agregado y el estado de validación de todos sus controles hijos, lo 
+que facilita validar y manejar formularios complejos con múltiples campos relacionados.
 
 **Características principales:**
 - Agrupa varios `FormControl` o incluso otros `FormGroup` (formularios anidados).
@@ -68,7 +78,9 @@ this.registroForm = new FormGroup({
 ---
 
 ### 3. FormControl
-Un **FormControl** es la unidad básica de un formulario reactivo. Representa un único campo de entrada (input, select, textarea, etc.) y rastrea su valor, su estado de validación y si ha sido modificado o tocado por el usuario.
+Un **FormControl** es la unidad básica de un formulario reactivo. Representa un único campo de entrada 
+(input, select, textarea, etc.) y rastrea su valor, su estado de validación y si ha sido modificado o 
+tocado por el usuario.
 
 Cada FormControl puede tener:
 - un valor inicial,
@@ -93,11 +105,14 @@ this.emailControl = new FormControl('', [
 ---
 
 ### 4. Validadores
-Los **validadores** (Validators) son funciones que determinan si un control o un grupo de controles cumple con ciertas reglas o restricciones. Angular proporciona un conjunto de validadores predefinidos y también permite crear validadores personalizados.
+Los **validadores** (Validators) son funciones que determinan si un control o un grupo de controles cumple 
+con ciertas reglas o restricciones. Angular proporciona un conjunto de validadores predefinidos y también 
+permite crear validadores personalizados.
 
 Los validadores pueden ser:
 - **Síncronos**: evalúan el valor inmediatamente (ej. `required`, `minLength`, `email`).
-- **Asíncronos**: realizan validaciones que requieren operaciones asíncronas, como consultar un servidor (ej. verificar si un email ya está registrado).
+- **Asíncronos**: realizan validaciones que requieren operaciones asíncronas, como consultar un servidor 
+(ej. verificar si un email ya está registrado).
 
 **Validadores comunes incluidos en Angular:**
 - `Validators.required` → el campo no puede estar vacío.
@@ -130,11 +145,11 @@ this.nombreControl = new FormControl('', [soloLetras]);
 ---
 
 ### 5. Estados del formulario
-Angular rastrea automáticamente el estado de cada control y del formulario completo, proporcionando información útil sobre la interacción del usuario y la validez de los datos ingresados. Estos estados ayudan a decidir cuándo mostrar mensajes de error, habilitar o deshabilitar botones, y mejorar la experiencia del usuario.
+Angular rastrea automáticamente el estado de cada control y del formulario completo, proporcionando información 
+útil sobre la interacción del usuario y la validez de los datos ingresados. Estos estados ayudan a decidir 
+cuándo mostrar mensajes de error, habilitar o deshabilitar botones, y mejorar la experiencia del usuario.
 
----
-
-#### valid
+#### valid 
 Indica que el control o formulario cumple con todas las validaciones establecidas.
 
 **Uso típico:**
@@ -144,8 +159,6 @@ Indica que el control o formulario cumple con todas las validaciones establecida
 ```html
 <button [disabled]="!miFormulario.valid">Enviar</button>
 ```
-
----
 
 #### invalid
 Indica que el control o formulario **no** cumple con al menos una de las validaciones.
@@ -160,13 +173,13 @@ Indica que el control o formulario **no** cumple con al menos una de las validac
 }
 ```
 
----
-
 #### touched
-Indica que el usuario ha interactuado con el campo (hizo foco y luego salió del campo, disparando el evento `blur`).
+Indica que el usuario ha interactuado con el campo (hizo foco y luego salió del campo, disparando 
+el evento `blur`).
 
 **Uso típico:**
-- Mostrar mensajes de error solo después de que el usuario haya tocado el campo, evitando mostrar errores prematuramente.
+- Mostrar mensajes de error solo después de que el usuario haya tocado el campo, evitando mostrar 
+errores prematuramente.
 
 **Ejemplo:**
 ```html
@@ -174,8 +187,6 @@ Indica que el usuario ha interactuado con el campo (hizo foco y luego salió del
   <span class="error">El nombre es obligatorio</span>
 }
 ```
-
----
 
 #### dirty
 Indica que el usuario ha modificado el valor del campo desde su valor inicial.
@@ -194,7 +205,9 @@ if (this.miFormulario.dirty) {
 ---
 
 ### 6. Mensajes de error
-Los **mensajes de error** son retroalimentación visual que se muestra al usuario cuando un campo no cumple con las validaciones establecidas. Es una buena práctica mostrar mensajes claros, específicos y contextuales para guiar al usuario a corregir el problema.
+Los **mensajes de error** son retroalimentación visual que se muestra al usuario cuando un campo no cumple 
+con las validaciones establecidas. Es una buena práctica mostrar mensajes claros, específicos y contextuales 
+para guiar al usuario a corregir el problema.
 
 **Buenas prácticas:**
 - Mostrar errores solo después de que el usuario haya interactuado con el campo (`touched` o `dirty`).
@@ -228,7 +241,9 @@ input.ng-invalid.ng-touched {
 ---
 
 ### 7. Validación antes de enviar
-La **validación antes de enviar** es una técnica que consiste en verificar que todo el formulario sea válido antes de permitir que se envíe al servidor. Esto previene el envío de datos incorrectos o incompletos y mejora la experiencia del usuario al proporcionar retroalimentación inmediata.
+La **validación antes de enviar** es una técnica que consiste en verificar que todo el formulario sea válido 
+antes de permitir que se envíe al servidor. Esto previene el envío de datos incorrectos o incompletos y mejora 
+la experiencia del usuario al proporcionar retroalimentación inmediata.
 
 **Estrategias comunes:**
 - Deshabilitar el botón de envío si el formulario es inválido.
@@ -258,7 +273,9 @@ enviarFormulario() {
 ---
 
 ### 8. Diferencia entre validación frontend y backend
-En el desarrollo de aplicaciones web modernas, la validación de datos debe realizarse tanto en el **frontend** (lado del cliente) como en el **backend** (lado del servidor). Cada una cumple un propósito distinto y ambas son necesarias para garantizar la seguridad, integridad y calidad de los datos.
+En el desarrollo de aplicaciones web modernas, la validación de datos debe realizarse tanto en el **frontend** 
+(lado del cliente) como en el **backend** (lado del servidor). Cada una cumple un propósito distinto y ambas son 
+necesarias para garantizar la seguridad, integridad y calidad de los datos.
 
 #### Diferencias Clave
 
@@ -286,7 +303,10 @@ if (!email || !isValidEmail(email)) {
 ```
 
 **Nota importante:**  
-Angular también cuenta con **Signal Forms**, una nueva API experimental basada en signals para gestionar formularios. Sin embargo, la documentación oficial indica que aún están en fase experimental, por lo que para este plan de formación junior se priorizan los **formularios reactivos tradicionales**. Signal Forms se mencionan solo como conocimiento futuro a explorar cuando se estabilicen.
+Angular también cuenta con **Signal Forms**, una nueva API experimental basada en signals para gestionar formularios. 
+Sin embargo, la documentación oficial indica que aún están en fase experimental, por lo que para este plan de formación 
+junior se priorizan los **formularios reactivos tradicionales**. Signal Forms se mencionan solo como conocimiento futuro 
+a explorar cuando se estabilicen.
 
 ---
 

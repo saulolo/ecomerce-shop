@@ -1,5 +1,6 @@
 <div class="product-detail-page">
   @if (product(); as p) {
+    <a [routerLink]="['/products', p.id, 'edit']" class="btn-edit">✏️ Editar</a>
     <div class="product-detail-card">
       <h2>{{ p.name }}</h2>
       <p><strong>ID:</strong> {{ p.id }}</p>

@@ -112,7 +112,7 @@ A diferencia de las pruebas de servicio, aquí necesitas el entorno de Angular p
 - Que responde bien a cambios en sus inputs.
 - Que emite los eventos correctos ante interacciones del usuario.
 - Que el template muestra u oculta elementos según el estado.
-- 
+
 **Ejemplo básico:**
 ```typescript
 import { ComponentFixture, TestBed } from '@angular/core/testing';

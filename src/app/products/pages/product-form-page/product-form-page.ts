@@ -16,15 +16,15 @@ export class ProductFormPage implements OnInit{
   private router = inject(Router);
 
   // Categorías para el <select>
-  protected categories = CATEGORIES;
+  public categories = CATEGORIES;
 
   // Estado del componente
-  protected isEditMode = signal(false);
-  protected isSaving = signal(false);
-  protected productId = signal<string | null>(null);
+  public isEditMode = signal(false);
+  public isSaving = signal(false);
+  public productId = signal<string | null>(null);
 
   // Definición del formulario reactivo
-  protected productForm = new FormGroup({
+  public productForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     price: new FormControl<number | null>(null, [
       Validators.required,
